@@ -35,18 +35,19 @@ echo -n "$new_docker_url" | xclip -selection clipboard
 
 # SSH into the server using the hostname
 read -p "Enter the SSH hostname: " ssh_hostname
-$ssh_hostname
+$ssh_hostname 'docker_url=""; new_docker_url=""; echo -e "docker pull $docker_url\ndocker tag $docker_url $new_docker_url\ndocker push $new_docker_url"'
 
-# Pull the original Docker image
-printf "${GREEN}Pulling image...${NC}\n"
-docker pull $docker_url
 
-# Tag the new Docker image
-printf "${GREEN}Tag Image: $docker_url | to Image:$new_docker_url${NC}\n"
-docker tag $docker_url $new_image
+# # Pull the original Docker image
+# printf "${GREEN}Pulling image...${NC}\n"
+# docker pull $docker_url
 
-# Push the new Docker image
-printf "${GREEN}Pushing Image:$new_docker_url${NC}\n"
-docker push $new_image
+# # Tag the new Docker image
+# printf "${GREEN}Tag Image: $docker_url | to Image:$new_docker_url${NC}\n"
+# docker tag $docker_url $new_docker_url
+
+# # Push the new Docker image
+# printf "${GREEN}Pushing Image:$new_docker_url${NC}\n"
+# docker push $new_docker_url
 
 
